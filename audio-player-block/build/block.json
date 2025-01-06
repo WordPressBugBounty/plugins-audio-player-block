@@ -1,0 +1,311 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bpmp/mp3-player",
+  "title": "Audio Player",
+  "description": "Listen music on the web.",
+  "category": "widgets",
+  "keywords": [
+    "music player",
+    "audio player",
+    "mp3 player block"
+  ],
+  "textdomain": "mp3player-block",
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": ""
+    },
+    "audioProperties": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Green Chair",
+          "artist": "Diego Nava",
+          "cover": {
+            "id": null,
+            "url": "",
+            "alt": "",
+            "title": "",
+            "link": ""
+          },
+          "audio": {
+            "id": null,
+            "url": "",
+            "title": ""
+          }
+        }
+      ]
+    },
+    "options": {
+      "type": "object",
+      "default": {
+        "theme": "default",
+        "isAutoPlay": false
+      }
+    },
+    "elements": {
+      "type": "object",
+      "default": {
+        "thumb": true,
+        "navigation": true,
+        "backword": true,
+        "forward": true,
+        "currentTime": true,
+        "totalTime": true,
+        "volume": true,
+        "playbackSpeed": true,
+        "download": true
+      }
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "height": {
+          "desktop": "",
+          "tablet": "",
+          "mobile": ""
+        },
+        "title": {
+          "typo": {
+            "fontSize": {
+              "desktop": 32,
+              "tablet": 26,
+              "mobile": 23
+            },
+            "fontWeight": 600
+          },
+          "colors": {}
+        },
+        "artist": {
+          "typo": {
+            "fontSize": {
+              "desktop": 22.4,
+              "tablet": 20,
+              "mobile": 18
+            },
+            "fontWeight": 500
+          },
+          "opacity": 1,
+          "colors": {
+            "color": "#000"
+          }
+        },
+        "thumbnail": {
+          "width": {
+            "desktop": "100%",
+            "tablet": "",
+            "mobile": ""
+          },
+          "sliderHeight": {
+            "desktop": "",
+            "tablet": "",
+            "mobile": ""
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "range": {
+          "input": {
+            "width": {
+              "desktop": "100%",
+              "tablet": "100%",
+              "mobile": "100%"
+            },
+            "height": "4px",
+            "radius": {
+              "top": "8px",
+              "right": "8px",
+              "bottom": "8px",
+              "left": "8px"
+            },
+            "color": "rgba(0, 0, 0, .2)",
+            "progressColor": "#000"
+          },
+          "thumb": {
+            "width": "16px",
+            "color": "#EE714B",
+            "shadow": [],
+            "outline": {
+              "width": "4px",
+              "style": "solid",
+              "color": "white"
+            },
+            "radius": "50%"
+          }
+        },
+        "controls": {
+          "size": "45px",
+          "playPauseSize": "60px",
+          "colors": {
+            "color": "#a0a0a0",
+            "bg": "#0000"
+          },
+          "hovColors": {
+            "color": "#9c9c9c",
+            "bg": "#d8d8d8"
+          },
+          "playPauseColors": {
+            "color": "#fff",
+            "bg": "#000"
+          },
+          "playPauseHovColors": {
+            "color": "#fff",
+            "bg": "#4c4343"
+          },
+          "border": {},
+          "hovBorder": {}
+        },
+        "time": {
+          "typo": {
+            "fontSize": {
+              "desktop": 22.4,
+              "tablet": 18,
+              "mobile": 15
+            }
+          },
+          "colors": {
+            "color": "#111",
+            "bg": "#0000"
+          },
+          "radius": "50px"
+        },
+        "playlist": {
+          "colors": {
+            "bg": "#FFFFFF",
+            "color": "#1C0568"
+          },
+          "border": {},
+          "radius": "5px"
+        },
+        "waveColors": {
+          "normal": "#4527a4",
+          "lite": "#ab98e7"
+        },
+        "cardTheme": {
+          "waveTop": {
+            "desktop": -130,
+            "tablet": -130,
+            "mobile": -160
+          },
+          "wave2Top": {
+            "desktop": -130,
+            "tablet": -130,
+            "mobile": -160
+          },
+          "wave3Top": {
+            "desktop": -130,
+            "tablet": -130,
+            "mobile": -160
+          }
+        }
+      }
+    },
+    "width": {
+      "type": "string",
+      "default": "290px"
+    },
+    "widthTab": {
+      "type": "string",
+      "default": ""
+    },
+    "widthMob": {
+      "type": "string",
+      "default": ""
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "alignmentTab": {
+      "type": "string",
+      "default": "center"
+    },
+    "alignmentMob": {
+      "type": "string",
+      "default": "center"
+    },
+    "advanced": {
+      "type": "object",
+      "default": {
+        "dimension": {
+          "padding": {
+            "desktop": {
+              "top": "16px",
+              "right": "32px",
+              "bottom": "16px",
+              "left": "32px"
+            },
+            "tablet": {
+              "top": "",
+              "right": "",
+              "bottom": "",
+              "left": ""
+            },
+            "mobile": {
+              "top": "",
+              "right": "",
+              "bottom": "",
+              "left": ""
+            }
+          }
+        },
+        "borderShadow": {
+          "normal": {
+            "border": {
+              "width": "",
+              "style": "",
+              "color": ""
+            },
+            "radius": {
+              "top": "16px",
+              "right": "16px",
+              "bottom": "16px",
+              "left": "16px"
+            },
+            "shadow": [
+              {
+                "hOffset": "0px",
+                "vOffset": "0px",
+                "blur": "8px",
+                "color": "rgba(0, 0, 0, .4)"
+              }
+            ]
+          }
+        },
+        "background": {
+          "normal": {
+            "color": ""
+          }
+        }
+      }
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "example": {
+    "attributes": {}
+  },
+  "editorScript": [
+    "file:./index.js",
+    "wp-api"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": "file:./view.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}
