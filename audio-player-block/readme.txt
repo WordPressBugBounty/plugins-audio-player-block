@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, audio player block, mp3 player, Gutenberg block
 Requires at least: 6.2+
 Tested up to: 6.6.1
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -129,48 +129,8 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog == 
 
-= 1.2.0 - 06 Jan, 2025 =
-* Upgrade to Premium version
-
-= 1.1.0 - 30 Sep, 2023 =
-* Stop at the end of the album
-
-= 1.0.9 =
-* Fix the icon visible issue
-
-= 1.0.8 =
-* Performance Improvements
-
-= 1.0.7 =
-* Fix the play pause icon not visible on iPhone
-
-= 1.0.6 =
-* Change audio property update way.
-
-= 1.0.5 =
-* Pause other audio when playing.
-* Not load scripts if block is not used
-
-= 1.0.4 =
-* Fix responsive issue
-* Fix play/pause button accuracy
-
-= 1.0.3 =
-* Hours feature
-
-= 1.0.2 =
-* Add translate feature
-* Insert file from URL
-
-= 1.0.1 =
-* readme updated
-* fix mirror issues
-
-= 1.0.0 =
-* Initial Release
-
-
-== Upgrade Notice ==
+= 1.2.1 - 09 Jan, 2025 =
+* Premium issue fixed
 
 = 1.2.0 - 06 Jan, 2025 =
 * Upgrade to Premium version

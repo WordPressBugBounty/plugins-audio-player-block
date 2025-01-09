@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Audio Player Block
  * Description: Listen Music on the Web.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -24,7 +24,7 @@ if ( function_exists( 'bpmp_fs' ) ) {
         }
     } );
 } else {
-    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.2.0' ) );
+    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.2.1' ) );
     define( 'BPMP_DIR_URL', plugin_dir_url( __FILE__ ) );
     define( 'BPMP_DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'BPMP_HAS_FREE', 'audio-player-block/plugin.php' === plugin_basename( __FILE__ ) );
@@ -58,8 +58,8 @@ if ( function_exists( 'bpmp_fs' ) ) {
                         'is_require_payment' => true,
                     ),
                     'menu'                => array(
-                        'slug'       => 'edit.php?post_type=audio_player_block&page=bpmp_demo_page',
-                        "first-path" => 'edit.php?post_type=audio_player_block&page=bpmp_demo_page',
+                        'slug'       => 'edit.php?post_type=audio_player_block',
+                        'first-path' => 'edit.php?post_type=audio_player_block&page=bpmp_demo_page',
                         'support'    => false,
                     ),
                 );
