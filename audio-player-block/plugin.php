@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Audio Player Block
  * Description: Listen Music on the Web.
- * Version: 1.2.3
+ * Version: 1.2.4
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -24,7 +24,7 @@ if ( function_exists( 'bpmp_fs' ) ) {
         }
     } );
 } else {
-    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.2.3' ) );
+    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.2.4' ) );
     define( 'BPMP_DIR_URL', plugin_dir_url( __FILE__ ) );
     define( 'BPMP_DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'BPMP_HAS_FREE', 'audio-player-block/plugin.php' === plugin_basename( __FILE__ ) );
@@ -208,13 +208,38 @@ if ( function_exists( 'bpmp_fs' ) ) {
 <?php 
             }
 
-            function bpmp_audio_player_block_shortcode( $attributes ) {
-                $postID = $attributes['id'];
-                $post = get_post( $postID );
+            function bpmp_audio_player_block_shortcode( $atts ) {
+                $post_id = $atts['id'];
+                $post = get_post( $post_id );
+                if ( !$post ) {
+                    return '';
+                }
+                if ( post_password_required( $post ) ) {
+                    return get_the_password_form( $post );
+                }
+                switch ( $post->post_status ) {
+                    case 'publish':
+                        return $this->displayContent( $post );
+                    case 'private':
+                        if ( current_user_can( 'read_private_posts' ) ) {
+                            return $this->displayContent( $post );
+                        }
+                        return '';
+                    case 'draft':
+                    case 'pending':
+                    case 'future':
+                        if ( current_user_can( 'edit_post', $post_id ) ) {
+                            return $this->displayContent( $post );
+                        }
+                        return '';
+                    default:
+                        return '';
+                }
+            }
+
+            function displayContent( $post ) {
                 $blocks = parse_blocks( $post->post_content );
-                ob_start();
-                echo render_block( $blocks[0] );
-                return ob_get_clean();
+                return render_block( $blocks[0] );
             }
 
             function bpmp_audioPlayerManageColumns( $defaults ) {
