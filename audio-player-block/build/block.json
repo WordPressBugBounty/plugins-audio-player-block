@@ -37,6 +37,12 @@
         }
       ]
     },
+    "lite": {
+      "type": "object",
+      "default": {
+        "btnText": "See More Music"
+      }
+    },
     "options": {
       "type": "object",
       "default": {
@@ -181,8 +187,16 @@
         },
         "playlist": {
           "colors": {
-            "bg": "#FFFFFF",
-            "color": "#1C0568"
+            "bg": "#F9F9F9",
+            "color": "#111111"
+          },
+          "activeColors": {
+            "bg": "#913535",
+            "color": "#FFFFFF"
+          },
+          "seeMoreMusicBtncolors": {
+            "bg": "#4527a4",
+            "color": "#fff"
           },
           "border": {},
           "radius": "5px"
