@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, audio player block, mp3 player, Gutenberg block
 Requires at least: 6.2+
 Tested up to: 6.7.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -24,9 +24,11 @@ A block for embedding a beautiful audio player on the WordPress website. It supp
 
 = Pro Features =
 - **Customize 5 Different Themes**: Add 5 new themes with different looks and settings.
-- **Music Auto Play**: Automatically start playing the audio when the player loads.
+- **Auto Play**: Automatically start the next song once the current one ends, if enabled.
+- **Loop Mode**: Enable looping of the current track once it finishes playing.
 - **Navigation Prev/Next**: Easily navigate to the previous or next track in the playlist.
 - **Current & Total Time Display**: Shows the current & total playback time of the audio track.
+- **Custom Stop Button**: Show or hide a custom stop button based on your settings.
 - **Input Range Thumb**: Customize the style of the range slider thumb for seeking.
 - **Playback Speed Control**: Enable or disable playback speed adjustment options.
 - **Download Icon**: Add an option to download the audio file directly from the player.
@@ -128,6 +130,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog == 
+
+= 1.3.2 - 11 April, 2025 =
+* Added loop, auto-play and cutom stop button
 
 = 1.3.1 - 21 March, 2025 =
 * Update custom dashboard styles

@@ -47,7 +47,8 @@
       "type": "object",
       "default": {
         "theme": "default",
-        "isAutoPlay": false
+        "isAutoPlay": false,
+        "isLoop": false
       }
     },
     "elements": {
@@ -57,6 +58,7 @@
         "navigation": true,
         "backword": true,
         "forward": true,
+        "customStop": true,
         "currentTime": true,
         "totalTime": true,
         "volume": true,
