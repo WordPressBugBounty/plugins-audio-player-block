@@ -48,7 +48,8 @@
       "default": {
         "theme": "default",
         "isAutoPlay": false,
-        "isLoop": false
+        "isLoop": false,
+        "seeMoreThreshold": 5
       }
     },
     "elements": {

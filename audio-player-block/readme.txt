@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, audio player block, mp3 player, Gutenberg block
 Requires at least: 6.2+
 Tested up to: 6.7.1
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -130,6 +130,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog == 
+
+= 1.3.3 - 20 May, 2025 =
+* Optimize dashboard layout and change cover photo some layouts
 
 = 1.3.2 - 11 April, 2025 =
 * Added loop, auto-play and cutom stop button
