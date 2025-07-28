@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Audio Player Block
  * Description: Listen Music on the Web.
- * Version: 1.3.6
+ * Version: 1.3.7
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -24,23 +24,18 @@ if ( function_exists( 'bpmp_fs' ) ) {
         }
     } );
 } else {
-    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.3.6' ) );
+    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.3.7' ) );
     define( 'BPMP_DIR_URL', plugin_dir_url( __FILE__ ) );
     define( 'BPMP_DIR_PATH', plugin_dir_path( __FILE__ ) );
-    define( 'BPMP_HAS_FREE', 'audio-player-block/plugin.php' === plugin_basename( __FILE__ ) );
-    define( 'BPMP_HAS_PRO', 'audio-player-block-pro/plugin.php' === plugin_basename( __FILE__ ) );
+    define( 'BPMP_HAS_PRO', file_exists( dirname( __FILE__ ) . '/freemius/start.php' ) );
     if ( !function_exists( 'bpmp_fs' ) ) {
         function bpmp_fs() {
             global $bpmp_fs;
             if ( !isset( $bpmp_fs ) ) {
-                $fsStartPath = dirname( __FILE__ ) . '/freemius/start.php';
-                $bSDKInitPath = dirname( __FILE__ ) . '/bplugins_sdk/init.php';
-                if ( BPMP_HAS_PRO && file_exists( $fsStartPath ) ) {
-                    require_once $fsStartPath;
+                if ( BPMP_HAS_PRO ) {
+                    require_once dirname( __FILE__ ) . '/freemius/start.php';
                 } else {
-                    if ( BPMP_HAS_FREE && file_exists( $bSDKInitPath ) ) {
-                        require_once $bSDKInitPath;
-                    }
+                    require_once dirname( __FILE__ ) . '/freemius-lite/start.php';
                 }
                 $bpmpConfig = array(
                     'id'                  => '17222',
@@ -59,11 +54,11 @@ if ( function_exists( 'bpmp_fs' ) ) {
                     ),
                     'menu'                => array(
                         'slug'       => 'edit.php?post_type=audio_player_block',
-                        'first-path' => 'edit.php?post_type=audio_player_block&page=bpmp_demo_page',
+                        'first-path' => 'edit.php?post_type=audio_player_block&page=bpmp_demo_page#/dashboard',
                         'support'    => false,
                     ),
                 );
-                $bpmp_fs = ( BPMP_HAS_PRO && file_exists( $fsStartPath ) ? fs_dynamic_init( $bpmpConfig ) : fs_lite_dynamic_init( $bpmpConfig ) );
+                $bpmp_fs = ( BPMP_HAS_PRO ? fs_dynamic_init( $bpmpConfig ) : fs_lite_dynamic_init( $bpmpConfig ) );
             }
             return $bpmp_fs;
         }
@@ -80,7 +75,6 @@ if ( function_exists( 'bpmp_fs' ) ) {
         class BPMPPlugin {
             function __construct() {
                 add_action( 'init', [$this, 'onInit'] );
-                add_action( 'init', [$this, 'bpmp_register_audio_player_block_post_type'] );
                 add_shortcode( 'audio_player', [$this, 'bpmp_audio_player_block_shortcode'] );
                 add_filter( 'manage_audio_player_block_posts_columns', [$this, 'bpmp_audioPlayerManageColumns'], 10 );
                 add_action(
@@ -95,6 +89,27 @@ if ( function_exists( 'bpmp_fs' ) ) {
                 add_action( 'wp_ajax_nopriv_bpmpPremiumChecker', [$this, 'bpmpPremiumChecker'] );
                 add_action( 'admin_init', [$this, 'registerSettings'] );
                 add_action( 'rest_api_init', [$this, 'registerSettings'] );
+            }
+
+            function onInit() {
+                register_block_type( __DIR__ . '/build' );
+                register_post_type( 'audio_player_block', [
+                    'label'              => 'Audio Player',
+                    'labels'             => [
+                        'add_new'      => 'Add New',
+                        'add_new_item' => 'Add New Player',
+                        'edit_item'    => 'Edit Player',
+                        'not_found'    => 'There was no player please add one',
+                    ],
+                    'show_in_rest'       => true,
+                    'public'             => true,
+                    'publicly_queryable' => false,
+                    'menu_icon'          => 'dashicons-format-audio',
+                    'item_published'     => 'Audio Player Block Published',
+                    'item_updated'       => 'Audio Player Block Updated',
+                    'template'           => [['bpmp/mp3-player']],
+                    'template_lock'      => 'all',
+                ] );
             }
 
             function bpmpPremiumChecker() {
@@ -120,30 +135,6 @@ if ( function_exists( 'bpmp_fs' ) ) {
                         'nonce' => wp_create_nonce( 'wp_ajax' ),
                     ] ),
                     'sanitize_callback' => 'sanitize_text_field',
-                ] );
-            }
-
-            function onInit() {
-                register_block_type( __DIR__ . '/build' );
-            }
-
-            function bpmp_register_audio_player_block_post_type() {
-                register_post_type( 'audio_player_block', [
-                    'label'              => 'Audio Player',
-                    'labels'             => [
-                        'add_new'      => 'Add New',
-                        'add_new_item' => 'Add New Player',
-                        'edit_item'    => 'Edit Player',
-                        'not_found'    => 'There was no player please add one',
-                    ],
-                    'show_in_rest'       => true,
-                    'public'             => true,
-                    'publicly_queryable' => false,
-                    'menu_icon'          => 'dashicons-format-audio',
-                    'item_published'     => 'Audio Player Block Published',
-                    'item_updated'       => 'Audio Player Block Updated',
-                    'template'           => [['bpmp/mp3-player']],
-                    'template_lock'      => 'all',
                 ] );
             }
 
@@ -212,10 +203,7 @@ if ( function_exists( 'bpmp_fs' ) ) {
                 ?>
 						</div>
 					</div>
-					</div>
-				</div>
-
-
+			   </div>
 				<?php 
             }
 
