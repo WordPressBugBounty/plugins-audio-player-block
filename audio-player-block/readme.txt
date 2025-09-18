@@ -1,4 +1,4 @@
-=== Audio Player Block - audio player gutenberg block plugin  ===
+=== Audio Player Block – Advanced Block for Embedding Audio Files  ===
 Contributors: bplugins, abuhayat, charlescormier, shamim10, freemius
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, audio player block, mp3 player, Gutenberg block
@@ -9,18 +9,18 @@ Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-A block for embedding a beautiful audio player.
+A block for embedding a beautiful audio player
 
 == Description ==
 
-A block for embedding a beautiful audio player on the WordPress website. It supports multiple audios as a playlist and you can select a single audio file to make a non playlist player. 
+A block for embedding a beautiful audio player on the WordPress website. It supports multiple audios as a playlist and you can select a single audio file to make a non playlist player
 
 
 **[Demos](https://bblockswp.com/demo/audio-player)** | **[Get Pro Version](https://bplugins.com/products/audio-player-block/#pricing)**
 
 
 = Key Features =
-- **Audio Play/Pause**: Play selected audio and pause others; click again to pause the current audio.
+- **Audio Play/Pause**: Play selected audio and pause others; click again to pause the current audio
 
 = Pro Features =
 - **Customize 5 Different Themes**: Add 5 new themes with different looks and settings.
