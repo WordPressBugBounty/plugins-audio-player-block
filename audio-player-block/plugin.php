@@ -3,14 +3,13 @@
 /**
  * Plugin Name: Audio Player Block
  * Description: Listen Music on the Web.
- * Version: 1.3.7
+ * Version: 1.4.0
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: mp3player-block
  */
-// ABS PATH
 if ( !defined( 'ABSPATH' ) ) {
     exit;
 }
@@ -24,7 +23,7 @@ if ( function_exists( 'bpmp_fs' ) ) {
         }
     } );
 } else {
-    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.3.7' ) );
+    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.4.0' ) );
     define( 'BPMP_DIR_URL', plugin_dir_url( __FILE__ ) );
     define( 'BPMP_DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'BPMP_HAS_PRO', file_exists( dirname( __FILE__ ) . '/freemius/start.php' ) );
@@ -54,7 +53,7 @@ if ( function_exists( 'bpmp_fs' ) ) {
                     ),
                     'menu'                => array(
                         'slug'       => 'edit.php?post_type=audio_player_block',
-                        'first-path' => 'edit.php?post_type=audio_player_block&page=bpmp_demo_page#/dashboard',
+                        'first-path' => 'edit.php?post_type=audio_player_block&page=bpmp_demo_page#/welcome',
                         'support'    => false,
                     ),
                 );
@@ -70,7 +69,6 @@ if ( function_exists( 'bpmp_fs' ) ) {
         return ( BPMP_HAS_PRO ? bpmp_fs()->can_use_premium_code() : false );
     }
 
-    // ... Your plugin's main file logic ...
     if ( !class_exists( 'BPMPPlugin' ) ) {
         class BPMPPlugin {
             function __construct() {
@@ -141,7 +139,7 @@ if ( function_exists( 'bpmp_fs' ) ) {
             function bpmp_add_demo_submenu() {
                 add_submenu_page(
                     'edit.php?post_type=audio_player_block',
-                    'Demo Page',
+                    'Demo and Help',
                     'Demo & Help',
                     'manage_options',
                     'bpmp_demo_page',
@@ -149,62 +147,24 @@ if ( function_exists( 'bpmp_fs' ) ) {
                 );
             }
 
+            function bpmp_render_demo_page() {
+                ?>
+					<div
+						id='bpmpCurrentBplDashboard'
+						data-info='<?php 
+                echo esc_attr( wp_json_encode( [
+                    'version'   => BPMP_VERSION,
+                    'isPremium' => bpmpIsPremium(),
+                    'hasPro'    => BPMP_HAS_PRO,
+                ] ) );
+                ?>'
+					></div>
+				<?php 
+            }
+
             function renderTemplate( $content ) {
                 $parseBlocks = parse_blocks( $content );
                 return render_block( $parseBlocks[0] );
-            }
-
-            function bpmp_render_demo_page() {
-                $dashboardData = [
-                    'version'   => BPMP_VERSION,
-                    'logo'      => 'https://ps.w.org/audio-player-block/assets/icon-128x128.png',
-                    'isPremium' => bpmpIsPremium(),
-                ];
-                ?>
-				<style>
-					#wpfooter {
-						position: relative;
-					}
-				</style>
-
-				<div id="customAdminDashboard" data-dashboard="<?php 
-                echo esc_attr( wp_json_encode( $dashboardData ) );
-                ?>">
-					<div class="renderDashboard"></div>
-					<div class="templates" style='display: none;'>
-						<div class="default">
-							<?php 
-                echo $this->renderTemplate( '<!-- wp:bpmp/mp3-player {"audioProperties":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","caption":""},"audio":{"id":3600,"url":"https://shamim.local/wp-content/uploads/2025/05/audio-player.mp3","alt":"","title":"audio-player","caption":""}},{"title":"Neon Pulse","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""}}],"style":{"height":{"desktop":"","tablet":"","mobile":""},"title":{"typo":{"fontSize":{"desktop":32,"tablet":26,"mobile":23},"fontWeight":600},"colors":{"color":"#000","bg":"#0000"}},"artist":{"typo":{"fontSize":{"desktop":22.4,"tablet":20,"mobile":18},"fontWeight":500},"opacity":1,"colors":{"color":"#000","bg":"#0000"}},"thumbnail":{"width":{"desktop":"100%","tablet":"","mobile":""},"sliderHeight":{"desktop":"","tablet":"","mobile":""},"border":{"width":"","style":"","color":""},"radius":{"top":"16px","right":"16px","bottom":"16px","left":"16px"}},"range":{"input":{"width":{"desktop":"100%","tablet":"100%","mobile":"100%"},"height":"4px","radius":{"top":"8px","right":"8px","bottom":"8px","left":"8px"},"color":"rgba(0, 0, 0, .2)","progressColor":"#000"},"thumb":{"width":"16px","color":"#EE714B","shadow":[],"outline":{"width":"4px","style":"solid","color":"white"},"radius":"50%"}},"controls":{"size":"45px","playPauseSize":"60px","colors":{"color":"#a0a0a0","bg":"#0000"},"hovColors":{"color":"#9c9c9c","bg":"#d8d8d8"},"playPauseColors":{"color":"#fff","bg":"#000"},"playPauseHovColors":{"color":"#fff","bg":"#4c4343"},"border":[],"hovBorder":[]},"time":{"typo":{"fontSize":{"desktop":22.4,"tablet":18,"mobile":15}},"colors":{"color":"#000","bg":"#0000"},"radius":"50px"},"playlist":{"colors":{"bg":"#F9F9F9","color":"#111111"},"activeColors":{"bg":"#913535","color":"#FFFFFF"},"seeMoreMusicBtncolors":{"bg":"#4527a4","color":"#fff"},"border":[],"radius":"5px"},"waveColors":{"normal":"#4527a4","lite":"#ab98e7"},"cardTheme":{"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":-130,"tablet":-130,"mobile":-160},"wave3Top":{"desktop":-130,"tablet":-130,"mobile":-160}}},"advanced":{"dimension":{"padding":{"desktop":{"top":"16px","right":"32px","bottom":"16px","left":"32px"},"tablet":{"top":"","right":"","bottom":"","left":""},"mobile":{"top":"","right":"","bottom":"","left":""}}},"borderShadow":{"normal":{"border":{"width":"","style":"","color":""},"radius":{"top":"16px","right":"16px","bottom":"16px","left":"16px"},"shadow":[{"hOffset":"0px","vOffset":"0px","blur":"8px","color":"rgba(0, 0, 0, .4)"}]}},"background":{"normal":{"type":"color","color":"#fff"}}}} /-->' );
-                ?>
-						</div>
-						<div class="slider">
-							<?php 
-                echo $this->renderTemplate( '<!-- wp:bpmp/mp3-player {"audioProperties":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":3972,"url":"https://shamim.local/wp-content/uploads/2025/05/slider.jpg","alt":"","title":"slider","caption":""},"audio":{"id":3600,"url":"https://shamim.local/wp-content/uploads/2025/05/audio-player.mp3","alt":"","title":"audio-player","caption":""}}],"options":{"theme":"slider","isAutoPlay":false,"isLoop":false,"seeMoreThreshold":5},"style":{"height":{"desktop":"","tablet":"","mobile":""},"title":{"typo":{"fontSize":{"desktop":32,"tablet":26,"mobile":23},"fontWeight":600},"colors":{"color":"#fff","bg":"#0000"}},"artist":{"typo":{"fontSize":{"desktop":22.4,"tablet":20,"mobile":18},"fontWeight":500},"opacity":1,"colors":{"color":"#fff","bg":"#0000"}},"thumbnail":{"width":{"desktop":"100%","tablet":"","mobile":""},"sliderHeight":{"desktop":"","tablet":"","mobile":""},"border":{"width":"","style":"","color":""},"radius":{"top":"16px","right":"16px","bottom":"16px","left":"16px"}},"range":{"input":{"width":{"desktop":"100%","tablet":"100%","mobile":"100%"},"height":"4px","radius":{"top":"8px","right":"8px","bottom":"8px","left":"8px"},"color":"#c0acac","progressColor":"#DC6161"},"thumb":{"width":"16px","color":"#EE714B","shadow":[],"outline":{"width":"4px","style":"solid","color":"white"},"radius":"50%"}},"controls":{"size":"45px","playPauseSize":"55px","colors":{"color":"#fff","bg":"#0000"},"hovColors":{"color":"#fff","bg":"#4C3737"},"playPauseColors":{"color":"#fff","bg":"#0000"},"playPauseHovColors":{"color":"#fff","bg":"#4C3737"},"border":[],"hovBorder":[]},"time":{"typo":{"fontSize":{"desktop":20,"tablet":18,"mobile":15}},"colors":{"color":"#fff","bg":"#0000"},"radius":"50px"},"playlist":{"colors":{"bg":"#F9F9F9","color":"#111111"},"activeColors":{"bg":"#913535","color":"#FFFFFF"},"seeMoreMusicBtncolors":{"bg":"#4527a4","color":"#fff"},"border":[],"radius":"5px"},"waveColors":{"normal":"#4527a4","lite":"#ab98e7"},"cardTheme":{"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":-130,"tablet":-130,"mobile":-160},"wave3Top":{"desktop":-130,"tablet":-130,"mobile":-160}}},"width":"100%","advanced":{"dimension":{"padding":{"desktop":{"top":"16px","right":"32px","bottom":"16px","left":"32px"},"tablet":{"top":"","right":"","bottom":"","left":""},"mobile":{"top":"","right":"","bottom":"","left":""}}},"borderShadow":{"normal":{"border":{"width":"","style":"","color":""},"radius":{"top":"15px","right":"15px","bottom":"15px","left":"15px"},"shadow":[{"hOffset":"","vOffset":"","blur":"","color":""}]}},"background":{"normal":{"type":"color","color":"#473C64"}}}} /-->' );
-                ?>
-						</div>
-						<div class="oneHaash">
-							<?php 
-                echo $this->renderTemplate( '<!-- wp:bpmp/mp3-player {"audioProperties":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":3972,"url":"https://shamim.local/wp-content/uploads/2025/05/slider.jpg","alt":"","title":"slider","caption":""},"audio":{"id":3600,"url":"https://shamim.local/wp-content/uploads/2025/05/audio-player.mp3","alt":"","title":"audio-player","caption":""}}],"options":{"theme":"oneHaash","isAutoPlay":false,"isLoop":false,"seeMoreThreshold":5},"style":{"height":{"desktop":"","tablet":"","mobile":""},"title":{"typo":{"fontSize":{"desktop":32,"tablet":26,"mobile":23},"fontWeight":600},"colors":{"color":"#000","bg":"#0000"}},"artist":{"typo":{"fontSize":{"desktop":22.4,"tablet":20,"mobile":18},"fontWeight":500},"opacity":1,"colors":{"color":"#000","bg":"#0000"}},"thumbnail":{"width":{"desktop":"100%","tablet":"","mobile":""},"sliderHeight":{"desktop":"","tablet":"","mobile":""},"border":{"width":"","style":"","color":""},"radius":{"top":"16px","right":"16px","bottom":"16px","left":"16px"}},"range":{"input":{"width":{"desktop":"100%","tablet":"100%","mobile":"100%"},"height":"4px","radius":{"top":"8px","right":"8px","bottom":"8px","left":"8px"},"color":"#69696987","progressColor":"#B24B1B"},"thumb":{"width":"16px","color":"#EE714B","shadow":[],"outline":{"width":"4px","style":"solid","color":"white"},"radius":"50%"}},"controls":{"size":"50px","playPauseSize":"50px","colors":{"color":"#a0a0a0","bg":"#0000"},"hovColors":{"color":"#9c9c9c","bg":"#d8d8d8"},"playPauseColors":{"color":"#696969AD","bg":"#0000"},"playPauseHovColors":{"color":"#696969AD","bg":"#D8D8D8"},"border":[],"hovBorder":[]},"time":{"typo":{"fontSize":{"desktop":18,"tablet":18,"mobile":15}},"colors":{"color":"#000","bg":"#0000"},"radius":"50px"},"playlist":{"colors":{"bg":"#F9F9F9","color":"#111111"},"activeColors":{"bg":"#913535","color":"#FFFFFF"},"seeMoreMusicBtncolors":{"bg":"#4527a4","color":"#fff"},"border":[],"radius":"5px"},"waveColors":{"normal":"#4527a4","lite":"#ab98e7"},"cardTheme":{"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":-130,"tablet":-130,"mobile":-160},"wave3Top":{"desktop":-130,"tablet":-130,"mobile":-160}}},"width":"100%","advanced":{"dimension":{"padding":{"desktop":{"top":"16px","right":"16px","bottom":"16px","left":"16px"},"tablet":{"top":"","right":"","bottom":"","left":""},"mobile":{"top":"","right":"","bottom":"","left":""}}},"borderShadow":{"normal":{"border":{"width":"1px","style":"solid","color":"#2C2785"},"radius":{"top":"7px","right":"7px","bottom":"7px","left":"7px"},"shadow":[{"hOffset":"","vOffset":"","blur":"","color":""}]}},"background":{"normal":{"type":"color","color":"#fff"}}}} /-->' );
-                ?>
-						</div>
-						<div class="wooden">
-							<?php 
-                echo $this->renderTemplate( '<!-- wp:bpmp/mp3-player {"audioProperties":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":3972,"url":"https://shamim.local/wp-content/uploads/2025/05/slider.jpg","alt":"","title":"slider","caption":""},"audio":{"id":3600,"url":"https://shamim.local/wp-content/uploads/2025/05/audio-player.mp3","alt":"","title":"audio-player","caption":""}}],"options":{"theme":"wooden","isAutoPlay":false,"isLoop":false,"seeMoreThreshold":5},"style":{"height":{"desktop":"","tablet":"","mobile":""},"title":{"typo":{"fontSize":{"desktop":20,"tablet":26,"mobile":23},"fontWeight":400},"colors":{"color":"#fff","bg":"#4C221AE3"}},"artist":{"typo":{"fontSize":{"desktop":22.4,"tablet":20,"mobile":18},"fontWeight":500},"opacity":1,"colors":{"color":"#000","bg":"#0000"}},"thumbnail":{"width":{"desktop":"100%","tablet":"","mobile":""},"sliderHeight":{"desktop":"","tablet":"","mobile":""},"border":{"width":"","style":"","color":""},"radius":{"top":"16px","right":"16px","bottom":"16px","left":"16px"}},"range":{"input":{"width":{"desktop":"100%","tablet":"100%","mobile":"100%"},"height":"4px","radius":{"top":"8px","right":"8px","bottom":"8px","left":"8px"},"color":"#0000","progressColor":"#000"},"thumb":{"width":"16px","color":"#EE714B","shadow":[],"outline":{"width":"4px","style":"solid","color":"white"},"radius":"50%"}},"controls":{"size":"45px","playPauseSize":"45px","colors":{"color":"#fff","bg":"#0000"},"hovColors":{"color":"#fff","bg":"#4E0606"},"playPauseColors":{"color":"#fff","bg":"#0000"},"playPauseHovColors":{"color":"#fff","bg":"#4E0606"},"border":[],"hovBorder":[]},"time":{"typo":{"fontSize":{"desktop":20,"tablet":18,"mobile":15}},"colors":{"color":"#fff","bg":"#4F160AE3"},"radius":"50px"},"playlist":{"colors":{"bg":"#F9F9F9","color":"#111111"},"activeColors":{"bg":"#913535","color":"#FFFFFF"},"seeMoreMusicBtncolors":{"bg":"#4527a4","color":"#fff"},"border":[],"radius":"5px"},"waveColors":{"normal":"#4527a4","lite":"#ab98e7"},"cardTheme":{"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":-130,"tablet":-130,"mobile":-160},"wave3Top":{"desktop":-130,"tablet":-130,"mobile":-160}}},"width":"100%","advanced":{"dimension":{"padding":{"desktop":{"top":"20px","right":"20px","bottom":"20px","left":"20px"},"tablet":{"top":"","right":"","bottom":"","left":""},"mobile":{"top":"","right":"","bottom":"","left":""}}},"borderShadow":{"normal":{"border":{"width":"","style":"","color":""},"radius":{"top":"120px","right":"120px","bottom":"120px","left":"120px"},"shadow":[{"hOffset":"","vOffset":"","blur":"","color":""}]}},"background":{"normal":{"type":"color","color":"#571a0ee3"}}}} /-->' );
-                ?>
-						</div>
-						<div class="lite">
-							<?php 
-                echo $this->renderTemplate( '<!-- wp:bpmp/mp3-player {"audioProperties":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","caption":""},"audio":{"id":3600,"url":"https://shamim.local/wp-content/uploads/2025/05/audio-player.mp3","alt":"","title":"audio-player","caption":""}},{"title":"Neon Pulse","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""}}],"options":{"theme":"lite","isAutoPlay":false,"isLoop":false,"seeMoreThreshold":5},"style":{"height":{"desktop":"","tablet":"","mobile":""},"title":{"typo":{"fontSize":{"desktop":32,"tablet":26,"mobile":23},"fontWeight":600},"colors":{"color":"#fff","bg":"#0000"}},"artist":{"typo":{"fontSize":{"desktop":22.4,"tablet":20,"mobile":18},"fontWeight":500},"opacity":1,"colors":{"color":"#000","bg":"#0000"}},"thumbnail":{"width":{"desktop":"100%","tablet":"","mobile":""},"sliderHeight":{"desktop":"","tablet":"","mobile":""},"border":{"width":"","style":"","color":""},"radius":{"top":"16px","right":"16px","bottom":"16px","left":"16px"}},"range":{"input":{"width":{"desktop":"100%","tablet":"100%","mobile":"100%"},"height":"4px","radius":{"top":"8px","right":"8px","bottom":"8px","left":"8px"},"color":"#e6d8d8","progressColor":"#B24B1B"},"thumb":{"width":"16px","color":"#EE714B","shadow":[],"outline":{"width":"4px","style":"solid","color":"white"},"radius":"50%"}},"controls":{"size":"45px","playPauseSize":"45px","colors":{"color":"#fff","bg":"#0000"},"hovColors":{"color":"#fff","bg":"#2B3359"},"playPauseColors":{"color":"#fff","bg":"#0000"},"playPauseHovColors":{"color":"#fff","bg":"#2B3359"},"border":[],"hovBorder":[]},"time":{"typo":{"fontSize":{"desktop":20,"tablet":18,"mobile":15}},"colors":{"color":"#fff","bg":"#0000"},"radius":"50px"},"playlist":{"colors":{"bg":"#F9F9F9","color":"#111111"},"activeColors":{"bg":"#913535","color":"#FFFFFF"},"seeMoreMusicBtncolors":{"bg":"#4527a4","color":"#fff"},"border":[],"radius":"5px"},"waveColors":{"normal":"#4527a4","lite":"#ab98e7"},"cardTheme":{"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":-130,"tablet":-130,"mobile":-160},"wave3Top":{"desktop":-130,"tablet":-130,"mobile":-160}}},"width":"100%","advanced":{"dimension":{"padding":{"desktop":{"top":"30px","right":"30px","bottom":"30px","left":"30px"},"tablet":{"top":"","right":"","bottom":"","left":""},"mobile":{"top":"","right":"","bottom":"","left":""}}},"borderShadow":{"normal":{"border":{"width":"","style":"","color":""},"radius":{"top":"15px","right":"15px","bottom":"15px","left":"15px"},"shadow":[{"hOffset":"","vOffset":"","blur":"","color":""}]}},"background":{"normal":{"type":"color","color":"#1c1c4a"}}}} /-->' );
-                ?>
-						</div>
-						<div class="card">
-							<?php 
-                echo $this->renderTemplate( '<!-- wp:bpmp/mp3-player {"audioProperties":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":3972,"url":"https://shamim.local/wp-content/uploads/2025/05/slider.jpg","alt":"","title":"slider","caption":""},"audio":{"id":null,"url":"","title":""}}],"options":{"theme":"card","isAutoPlay":false,"isLoop":false,"seeMoreThreshold":5},"style":{"height":{"desktop":"","tablet":"","mobile":""},"title":{"typo":{"fontSize":{"desktop":32,"tablet":26,"mobile":23},"fontWeight":600},"colors":{"color":"#000","bg":"#0000"}},"artist":{"typo":{"fontSize":{"desktop":22.4,"tablet":20,"mobile":18},"fontWeight":500},"opacity":1,"colors":{"color":"#000","bg":"#0000"}},"thumbnail":{"width":{"desktop":"100%","tablet":"","mobile":""},"sliderHeight":{"desktop":"","tablet":"","mobile":""},"border":{"width":"","style":"","color":""},"radius":{"top":"16px","right":"16px","bottom":"16px","left":"16px"}},"range":{"input":{"width":{"desktop":"100%","tablet":"100%","mobile":"100%"},"height":"4px","radius":{"top":"8px","right":"8px","bottom":"8px","left":"8px"},"color":"#0000","progressColor":"#000"},"thumb":{"width":"16px","color":"#EE714B","shadow":[],"outline":{"width":"4px","style":"solid","color":"white"},"radius":"50%"}},"controls":{"size":"50px","playPauseSize":"50px","colors":{"color":"#a0a0a0","bg":"#0000"},"hovColors":{"color":"#9c9c9c","bg":"#d8d8d8"},"playPauseColors":{"color":"#696969AD","bg":"#0000"},"playPauseHovColors":{"color":"#696969AD","bg":"#D8D8D8"},"border":[],"hovBorder":[]},"time":{"typo":{"fontSize":{"desktop":20,"tablet":18,"mobile":15}},"colors":{"color":"","bg":""},"radius":"50px"},"playlist":{"colors":{"bg":"#F9F9F9","color":"#111111"},"activeColors":{"bg":"#913535","color":"#FFFFFF"},"seeMoreMusicBtncolors":{"bg":"#4527a4","color":"#fff"},"border":[],"radius":"5px"},"waveColors":{"normal":"#4527a4","lite":"#ab98e7"},"cardTheme":{"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":-130,"tablet":-130,"mobile":-160},"wave3Top":{"desktop":-130,"tablet":-130,"mobile":-160}}},"width":"300px","advanced":{"dimension":{"padding":{"desktop":{"top":"","right":"","bottom":"","left":""},"tablet":{"top":"","right":"","bottom":"","left":""},"mobile":{"top":"","right":"","bottom":"","left":""}}},"borderShadow":{"normal":{"border":{"width":"","style":"","color":""},"radius":{"top":"","right":"","bottom":"","left":""},"shadow":[{"hOffset":"9px","vOffset":"7px","blur":"37px","spreed":"-6px","color":"#000000"}]}},"background":{"normal":{"type":"color","color":"#fff"}}}} /-->' );
-                ?>
-						</div>
-					</div>
-			   </div>
-				<?php 
             }
 
             function bpmp_audio_player_block_shortcode( $atts ) {
@@ -265,7 +225,7 @@ if ( function_exists( 'bpmp_fs' ) ) {
                 }
             }
 
-            function bpmp_admin_enqueue_script() {
+            function bpmp_admin_enqueue_script( $screen ) {
                 global $typenow;
                 if ( 'audio_player_block' === $typenow ) {
                     wp_enqueue_script(
@@ -281,25 +241,27 @@ if ( function_exists( 'bpmp_fs' ) ) {
                         BPMP_VERSION,
                         true
                     );
-                    wp_enqueue_script(
-                        'admin-demo-js',
-                        BPMP_DIR_URL . 'build/admin-demo.js',
-                        ["react", "react-dom"],
-                        BPMP_VERSION,
-                        true
-                    );
                     wp_enqueue_style(
                         'admin-post-css',
                         BPMP_DIR_URL . 'build/admin-post.css',
                         [],
                         BPMP_VERSION
                     );
-                    wp_enqueue_style(
-                        'admin-demo-css',
-                        BPMP_DIR_URL . 'build/admin-demo.css',
-                        [],
-                        BPMP_VERSION
-                    );
+                    if ( $screen === "audio_player_block_page_bpmp_demo_page" ) {
+                        wp_enqueue_script(
+                            'bpl-admin-dashboard-js',
+                            BPMP_DIR_URL . 'build/admin-dashboard.js',
+                            ['react', 'react-dom'],
+                            BPMP_VERSION,
+                            true
+                        );
+                        wp_enqueue_style(
+                            'bpl-admin-dashboard-css',
+                            BPMP_DIR_URL . 'build/admin-dashboard.css',
+                            [],
+                            BPMP_VERSION
+                        );
+                    }
                 }
             }
 

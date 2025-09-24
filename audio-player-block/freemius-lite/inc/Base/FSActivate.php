@@ -277,7 +277,7 @@ class FSActivate extends FS_Lite
 
                 function add_opt_in_menu()
                 {
-                    add_submenu_page('', $this->plugin_name, $this->plugin_name, 'manage_options', dirname($this->base_name) . '-opt-in', [$this, 'opt_in_form']);
+                    add_submenu_page('welcome', $this->plugin_name, $this->plugin_name, 'manage_options', dirname($this->base_name) . '-opt-in', [$this, 'opt_in_form']);
                 }
 
                 function opt_in_form()

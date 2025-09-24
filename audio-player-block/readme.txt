@@ -4,23 +4,23 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, audio player block, mp3 player, Gutenberg block
 Requires at least: 6.2+
 Tested up to: 6.7.1
-Stable tag: 1.3.7
+Stable tag: 1.4.0
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-A block for embedding a beautiful audio player
+A block for embedding a beautiful audio player.
 
 == Description ==
 
-A block for embedding a beautiful audio player on the WordPress website. It supports multiple audios as a playlist and you can select a single audio file to make a non playlist player
+A block for embedding a beautiful audio player on the WordPress website. It supports multiple audios as a playlist and you can select a single audio file to make a non playlist player. 
 
 
 **[Demos](https://bblockswp.com/demo/audio-player)** | **[Get Pro Version](https://bplugins.com/products/audio-player-block/#pricing)**
 
 
 = Key Features =
-- **Audio Play/Pause**: Play selected audio and pause others; click again to pause the current audio
+- **Audio Play/Pause**: Play selected audio and pause others; click again to pause the current audio.
 
 = Pro Features =
 - **Customize 5 Different Themes**: Add 5 new themes with different looks and settings.
@@ -131,6 +131,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Changelog == 
 
+= 1.4.0 - 24 Sep, 2025 =
+* added our current dashboard
+
 = 1.3.7 - 28 July, 2025 =
 * updated admin dashboard
 
@@ -138,7 +141,7 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 * update premium feature
 
 = 1.3.5 - 10 July, 2025 =
-* update shortcode and add clipboard
+* update shortcode and clipboard
 
 = 1.3.4 - 2 June, 2025 =
 * input range and track issue solved
