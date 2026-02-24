@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Audio Player Block
  * Description: Listen Music on the Web.
- * Version: 1.4.3
+ * Version: 1.4.4
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -16,7 +16,7 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( function_exists( 'bpmp_fs' ) ) {
     bpmp_fs()->set_basename( false, __FILE__ );
 } else {
-    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.4.3' ) );
+    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.4.4' ) );
     define( 'BPMP_DIR_URL', plugin_dir_url( __FILE__ ) );
     define( 'BPMP_DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'BPMP_HAS_FRMS', file_exists( dirname( __FILE__ ) . '/freemius/start.php' ) );
@@ -57,6 +57,9 @@ if ( function_exists( 'bpmp_fs' ) ) {
 
         bpmp_fs();
         do_action( 'bpmp_fs_loaded' );
+    }
+    if ( BPMP_HAS_FRMS ) {
+        require_once BPMP_DIR_PATH . 'includes/LicenseActivation.php';
     }
     require_once BPMP_DIR_PATH . 'includes/utility/functions.php';
     require_once BPMP_DIR_PATH . 'includes/rootPlugin/plugin.php';

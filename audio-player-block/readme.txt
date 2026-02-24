@@ -3,20 +3,20 @@ Contributors: bplugins, abuhayat, freemius, shamim10
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, audio player block, mp3 player, Gutenberg block
 Requires at least: 6.2+
-Tested up to: 6.7.1
-Stable tag: 1.4.3
+Tested up to: 6.9.1
+Stable tag: 1.4.4
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-A block for embedding a beautiful audio player
+A block for embedding a beautiful audio player.
 
 == Description ==
 
 A block for embedding a beautiful audio player on the WordPress website. It supports multiple audios as a playlist and you can select a single audio file to make a non playlist player. 
 
 
-**[Get Pro Version](https://bplugins.com/products/audio-player-block/pricing)**
+**[Get Pro Version](https://bplugins.com/products/audio-player-block/#pricing)**
 
 
 = Key Features =
@@ -24,8 +24,8 @@ A block for embedding a beautiful audio player on the WordPress website. It supp
 - **Track Details Input (Title & Artist)**: Set a custom title and artist name for each audio track to keep your content well organized.
 - **Cover Image & Audio File Upload**: Upload audio files along with a cover image to create a more engaging and visually appealing audio player.
 - **Player Customization (Width, Height & Styles)**: Adjust the player’s width and height, and style it with custom colors, backgrounds, hover effects, and other design settings to match your website.
-- **Shortcode Integration**: Use shortcode support to display the audio player anywhere on your website with ease.
 - **Smart Audio Play / Pause Control**: Play one audio track at a time while automatically pausing others; click again to pause the currently playing audio.
+- **Shortcode Integration**: Use shortcode support to display the audio player anywhere on your website with ease.
 
 = Pro Features =
 - **Customize 5 Different Themes**: Add 5 new themes with different looks and settings.
@@ -48,9 +48,8 @@ A block for embedding a beautiful audio player on the WordPress website. It supp
 - **Playlist Border & Radius**: Customize the border and corner radius of the playlist displayed below the lite audio player.
 
 
-
 = How to use =
-- First, install the Audio Player Block plugin.
+- First, install the Audio Player Block plugin
 - Add the Audio Player Block from the block category called "Widgets" in the Gutenberg editor.
 - You can change block settings from the right-side settings sidebar.
 - Enjoy!
@@ -125,16 +124,25 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 == Screenshots ==
 
-1. Default
-2. Slider Theme
-3. OneHaash Theme
-4. Wooden Theme
-5. Lite Theme
-6. Card Theme
-7. Settings
+1. Add Block
+2. General Settings
+3. Style Configuration 1
+4. Style Configuration 2
+5. Advanced Configuration
+6. Default Theme
+7. Slider Theme
+8. One Haash Theme
+9. Wooden Theme
+10. Lite Theme
+11. Card Theme
+12. ShortCode Generator
 
 
 == Changelog == 
+
+= 1.4.4 - 24 Feb, 2026 =
+* Added brand new dashboard with license activation support
+* Extended Download Icon feature to all player layouts
 
 = 1.4.3 - 04 Nov, 2025 =
 * Update sdk
