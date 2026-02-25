@@ -5,6 +5,7 @@ namespace BPMP;
 class AdminMenu  {
     function __construct() {
         add_action('admin_menu', [$this, 'bpmp_add_demo_submenu']);
+        add_action('admin_head', [$this, 'bpmp_admin_menu_color']);
     }
 
     function bpmp_add_demo_submenu(){
@@ -29,6 +30,17 @@ class AdminMenu  {
                     'licenseActiveNonce' => wp_create_nonce( 'bPlLicenseActivation' )
                 ] ) ); ?>'
             ></div>
+        <?php
+    }
+
+    function bpmp_admin_menu_color() {
+        ?>
+        <style>
+            #adminmenu a[href="edit.php?post_type=audio_player_block&page=bpmp_demo_page"] {
+                color: #f18500 !important; 
+                font-weight: 600 !important;
+            }
+        </style>
         <?php
     }
 

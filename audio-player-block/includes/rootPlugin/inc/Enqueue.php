@@ -6,7 +6,6 @@ class Enqueue {
     function __construct() {
         add_action('admin_enqueue_scripts', [$this, 'bpmp_admin_enqueue_script']);
     }
-   
 
     function bpmp_admin_enqueue_script($screen){
         global $typenow;

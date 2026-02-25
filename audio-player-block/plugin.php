@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Audio Player Block
  * Description: Listen Music on the Web.
- * Version: 1.4.4
+ * Version: 1.4.5
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -16,10 +16,17 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( function_exists( 'bpmp_fs' ) ) {
     bpmp_fs()->set_basename( false, __FILE__ );
 } else {
-    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.4.4' ) );
+    define( 'BPMP_VERSION', ( isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.4.5' ) );
     define( 'BPMP_DIR_URL', plugin_dir_url( __FILE__ ) );
     define( 'BPMP_DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'BPMP_HAS_FRMS', file_exists( dirname( __FILE__ ) . '/freemius/start.php' ) );
+    add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'bpmp_add_help_demo_link' );
+    function bpmp_add_help_demo_link(  $links  ) {
+        $help_link = '<a href="' . admin_url( 'edit.php?post_type=audio_player_block&page=bpmp_demo_page' ) . '" style="color:#FF7A00;font-weight:bold;">Help & Demos</a>';
+        $links[] = $help_link;
+        return $links;
+    }
+
     if ( !function_exists( 'bpmp_fs' ) ) {
         function bpmp_fs() {
             global $bpmp_fs;
