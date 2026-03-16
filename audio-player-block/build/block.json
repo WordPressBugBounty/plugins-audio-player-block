@@ -40,7 +40,8 @@
     "lite": {
       "type": "object",
       "default": {
-        "btnText": "See More Music"
+        "btnText": "See More Music",
+        "btnLessText": "Show Less Music"
       }
     },
     "options": {

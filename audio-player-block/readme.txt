@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, audio player block, mp3 player, Gutenberg block
 Requires at least: 6.2+
 Tested up to: 6.9.1
-Stable tag: 1.4.5
+Stable tag: 1.5.0
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -19,7 +19,7 @@ A block for embedding a beautiful audio player on the WordPress website. It supp
 **[Get Pro Version](https://bplugins.com/products/audio-player-block/pricing)**
 
 
-= Key Features =
+= Free Features =
 - **Multiple Audio Management (Add / Remove Audios)**: Easily add or remove multiple audio tracks from the player with full control over your playlist.
 - **Track Details Input (Title & Artist)**: Set a custom title and artist name for each audio track to keep your content well organized.
 - **Cover Image & Audio File Upload**: Upload audio files along with a cover image to create a more engaging and visually appealing audio player.
@@ -139,6 +139,11 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog == 
+
+= 1.5.0 - 16 March, 2026 =
+* Updated track limit (threshold) control for playlist layouts
+* Added new 'Show Less' button and text editing option
+* Added new pro features modal
 
 = 1.4.5 - 25 Feb, 2026 =
 * Added “Help & Demos” quick access link in Plugins page.

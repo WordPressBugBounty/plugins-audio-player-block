@@ -5,14 +5,13 @@ namespace BPMP;
 class AdminMenu  {
     function __construct() {
         add_action('admin_menu', [$this, 'bpmp_add_demo_submenu']);
-        add_action('admin_head', [$this, 'bpmp_admin_menu_color']);
     }
 
     function bpmp_add_demo_submenu(){
         add_submenu_page(
             'edit.php?post_type=audio_player_block',
             'Help & Demos',
-            'Help & Demos',
+            '<span style="color: #f18500; font-weight: 600;">Help & Demos</span>', 
             'manage_options',
             'bpmp_demo_page',
             [$this, 'bpmp_render_demo_page']
@@ -30,17 +29,6 @@ class AdminMenu  {
                     'licenseActiveNonce' => wp_create_nonce( 'bPlLicenseActivation' )
                 ] ) ); ?>'
             ></div>
-        <?php
-    }
-
-    function bpmp_admin_menu_color() {
-        ?>
-        <style>
-            #adminmenu a[href="edit.php?post_type=audio_player_block&page=bpmp_demo_page"] {
-                color: #f18500 !important; 
-                font-weight: 600 !important;
-            }
-        </style>
         <?php
     }
 
