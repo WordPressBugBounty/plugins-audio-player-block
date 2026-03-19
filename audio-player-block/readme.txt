@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, audio player block, mp3 player, Gutenberg block
 Requires at least: 6.2+
 Tested up to: 6.9.1
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -139,6 +139,9 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog == 
+
+= 1.5.1 - 19 March, 2026 =
+* Added auto height for all tracks
 
 = 1.5.0 - 16 March, 2026 =
 * Updated track limit (threshold) control for playlist layouts

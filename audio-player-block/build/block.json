@@ -50,6 +50,7 @@
         "theme": "default",
         "isAutoPlay": false,
         "isLoop": false,
+        "playlistFullHeight": false,
         "seeMoreThreshold": 5
       }
     },
