@@ -2,14 +2,14 @@
 Contributors: bplugins, abuhayat, freemius, shamim10
 Donate link: https://www.buymeacoffee.com/abuhayat
 Tags: block, audio player block, mp3 player, Gutenberg block
-Requires at least: 6.2+
-Tested up to: 6.9.1
-Stable tag: 1.5.2
+Requires at least: 6.5
+Tested up to: 7.0
+Stable tag: 1.6.0
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-A block for embedding a beautiful audio player
+A block for embedding a beautiful audio player.
 
 == Description ==
 
@@ -55,6 +55,18 @@ A block for embedding a beautiful audio player on the WordPress website. It supp
 - Enjoy!
 
 * For installation help click on Installation Tab
+
+== Source Code ==
+
+You can find the source code, report bugs, and contribute to the development of this plugin on our GitHub repository: 
+[**Audio Player Block on GitHub**](https://github.com/bPlugins/audio-player-block-free)
+
+= bpl-tools =
+
+* Source / GitHub: https://github.com/bPlugins/bpl-tools
+* License: GPL-2.0-or-later – https://www.gnu.org/licenses/gpl-2.0.html
+* Purpose: Shared utility library providing admin dashboard components and common Gutenberg editor controls.
+* External Services: The library may connect to bPlugins, WordPress.org, and Freemius services for product data and checkout functionality. See full details: https://github.com/bPlugins/bpl-tools#external-requests--why-they-are-made
 
 
 = Feedback =
@@ -139,6 +151,13 @@ You can post your questions on the [support forum here](https://wordpress.org/su
 
 
 == Changelog == 
+
+= 1.6.0 - 04 June, 2026 =
+* **New:** Added uninstall data cleanup settings to wipe database configs and post type records on delete.
+* **Improved:** Unlocked previously locked pro fields in the Gutenberg editor and introduced a clean, non-intrusive notices UI to display premium feature requirements.
+* **Updated:** Redesigned the shortcode copy-to-clipboard UI column in the audio player block CPT admin table for a better user experience.
+* **Updated:** Streamlined editor Settings controls for free users, focusing on Default and Slider theme controls.
+* **Updated:** Removed Pro-only theme styling and assets to reduce package footprint.
 
 = 1.5.2 - 09 April, 2026 =
 * **Fixed:** Class naming conflict and namespace resolution issue in LicenseActivation.

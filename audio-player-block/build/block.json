@@ -10,7 +10,7 @@
     "audio player",
     "mp3 player block"
   ],
-  "textdomain": "mp3player-block",
+  "textdomain": "audio-player-block",
   "attributes": {
     "align": {
       "type": "string",
@@ -319,10 +319,7 @@
   "example": {
     "attributes": {}
   },
-  "editorScript": [
-    "file:./index.js",
-    "wp-api"
-  ],
+  "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./view.css",
   "render": "file:./render.php",
