@@ -30,6 +30,7 @@ class AdminMenu  {
                     'version' => BPMP_VERSION,
                     'isPremium' => false,
                     'hasPro' => false,
+                    'adminUrl'  => admin_url(),
                     'deleteDataOnUninstall' => (bool) get_option( 'bpmp_delete_data_on_uninstall', false ),
                     'uninstallNonce'        => wp_create_nonce( 'bpmp_uninstall_nonce' ),
                 ] ) ); ?>'
