@@ -4,7 +4,7 @@
  * Plugin Name: Audio Player Block – Advanced Block for Embedding Audio Files
  * Plugin URI: https://bplugins.com/products/audio-player-block/
  * Description: Listen Music on the Web.
- * Version: 1.6.1
+ * Version: 1.6.2
  * Requires at least: 6.5
  * Tested up to: 7.0
  * Requires PHP: 7.1
@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 if (function_exists('bpmp_fs')) {
 	bpmp_fs()->set_basename( true, __FILE__ );
 } else {
-	define('BPMP_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.1');
+	define('BPMP_VERSION', isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.6.2');
 	define('BPMP_DIR_URL', plugin_dir_url(__FILE__));
 	define('BPMP_DIR_PATH', plugin_dir_path(__FILE__));
 
